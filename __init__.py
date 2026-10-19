@@ -1,1 +1,0 @@
-"""Pantallas del prototipo."""
