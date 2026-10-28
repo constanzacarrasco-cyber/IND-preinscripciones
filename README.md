@@ -1,72 +1,35 @@
-# Prototipo Streamlit — Preinscripciones Deportivas IND Aysén
+# Sistema de preinscripción deportiva IND Aysén — V4
 
-**Entrega 01:** estructura del proyecto y primera pantalla de bienvenida con dos perfiles de demostración.
+Prototipo académico TICA con Streamlit/Python. **No usar RUT ni datos reales**: la aplicación no dispone de autenticación, almacenamiento institucional ni controles para datos personales. Los registros existen solo en la sesión temporal del navegador.
 
-> **Atención:** este es un prototipo académico. No tiene autenticación, autorización, base de datos ni medidas suficientes para operar con datos personales reales. **Usar únicamente información ficticia.**
+## Archivos principales
 
-## Estructura
+- `app.py`: entrada a Streamlit.
+- `ind_app/screens/profesor.py`: formulario de prueba, validación de RUT y fechas.
+- `ind_app/screens/ind.py`: revisión de registros en la misma sesión y descarga.
+- `ind_app/export_sigi.py`: generador de XLSX que parte de una plantilla vacía.
+- `assets/plantilla_sigi_blanca.xlsx`: copia de la plantilla sin datos de estudiantes.
+- `requirements.txt`: Streamlit y openpyxl.
 
-```text
-IND_Preinscripciones_Streamlit/
-├── app.py                       # Punto de entrada
-├── requirements.txt             # Dependencia Streamlit
-├── iniciar_windows.bat          # Inicio rápido en Windows (tras instalar)
-├── .streamlit/
-│   └── config.toml              # Colores y estilo
-├── ind_app/
-│   ├── config.py                 # Constantes, campos informados por IND
-│   ├── styles.py                 # Estilos de interfaz
-│   └── screens/
-│       ├── home.py              # Primera pantalla, ya implementada
-│       ├── profesor.py          # Vista de demostración
-│       └── ind.py               # Vista de demostración
-├── docs/
-│   └── ALCANCE.md               # Qué está hecho y qué falta
-└── tests/
-    └── test_config.py           # Comprobación de configuración
-```
+## Cómo probar
 
-## Cómo ejecutar en Windows (PowerShell)
+1. Publica los archivos en GitHub conservando las rutas. En Streamlit Cloud, `app.py` debe ser el punto de entrada y la rama debe ser `main`.
+2. En la misma pestaña del navegador, entra a Profesor/a, selecciona la convocatoria de prueba abierta y registra un estudiante completamente ficticio. No utilices información de un alumno real.
+3. Vuelve a inicio y entra a IND. Allí aparecerá el registro de prueba solamente en tu sesión. Márcalo «Validado».
+4. Descarga el archivo `preinscripciones_DEMO_para_verificar_SIGI.xlsx`.
+5. Verifica que conserva la hoja `datos`, las dos filas de encabezados y la hoja `Options`. La importación efectiva debe comprobarla el IND en un entorno autorizado antes de afirmar compatibilidad operativa.
 
-1. Instala Python 3.10 o superior desde https://www.python.org/downloads/ , si aún no lo tienes. Activa «Add python.exe to PATH» si se ofrece.
-2. Descomprime el ZIP y abre PowerShell dentro de la carpeta `IND_Preinscripciones_Streamlit`.
-3. Ejecuta:
+## Límites de esta versión
 
-```powershell
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-python -m streamlit run app.py
-```
+- **No** hay usuarios, contraseñas, base de datos ni registros compartidos entre navegadores.
+- **No** hay conexión, importación automática ni escritura hacia SIGI.
+- La selección de deportes y convocatorias utiliza datos de ejemplo; no son eventos reales del IND.
+- El diseño sigue en desarrollo. Deben validarse los formatos de fechas y RUT, los catálogos de disciplinas y el archivo con la plataforma institucional.
 
-**Si Windows bloquea la activación de scripts**, puedes evitar activarla:
+## Ejecutar localmente
 
 ```powershell
 py -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m streamlit run app.py
 ```
-
-4. Abre el enlace local que aparezca en la terminal, normalmente `http://localhost:8501`.
-5. Para detener el servidor, presiona `Ctrl+C` en PowerShell.
-
-Después de instalar las dependencias, también puedes usar `iniciar_windows.bat` **si Streamlit está instalado en el Python al que apunta `py`**. Si usas entorno virtual, se recomienda iniciar con el comando correspondiente a `.venv`.
-
-## Qué funciona hoy
-
-- Inicio visual con el objetivo del proyecto y dos perfiles.
-- Botones para entrar a demostraciones de Profesor/a e IND y volver.
-- Resumen del flujo esperado: IND → Profesor/a → Validación → Excel → SIGI.
-- Lista de campos comunicados por el IND.
-
-## Qué NO funciona todavía
-
-No se guardan ni envían inscripciones; no hay login institucional, base de datos, creación de convocatorias ni exportación SIGI. La generación del archivo Excel será una siguiente etapa cuando tengamos la plantilla oficial sin datos reales.
-
-## Plan inmediato
-
-1. Revisar la plantilla SIGI real (estructura, columnas, tipos y codificación).
-2. Crear el formulario de preinscripción para profesores.
-3. Implementar validaciones del RUT, datos y plazos.
-4. Añadir almacenamiento **solo tras definir una solución adecuada de seguridad**.
-5. Construir la exportación de Excel e iniciar pruebas con datos ficticios.

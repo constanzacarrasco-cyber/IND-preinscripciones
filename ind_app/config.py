@@ -1,7 +1,7 @@
-"""Datos y etiquetas del prototipo inicial.
+"""Datos y etiquetas del prototipo basados en plantilla SIGI proporcionada por IND.
 
-ATENCIÓN: El orden exacto, los formatos y las reglas de la plantilla
-real de SIGI deben validarse antes de producir el archivo de importación.
+El orden de las 10 columnas está documentado, pero las reglas de validación del
+importador SIGI aún necesitan una prueba autorizada con la institución.
 """
 
 APP_TITLE = "Preinscripción Deportiva"
@@ -15,6 +15,7 @@ CAMPOS_INFORMADOS_SIGI = (
     "Apellido materno",
     "Fecha de nacimiento",
     "Género (F/M)",
+    "Categoría (SUB 10-12-14-17)",
     "Disciplina",
     "Establecimiento",
     "Comuna",

@@ -30,7 +30,7 @@ def render() -> None:
             st.markdown('<div class="module-label">01 · PERFIL EXTERNO</div>', unsafe_allow_html=True)
             st.markdown('<div class="module-title">👩‍🏫 Profesor/a</div>', unsafe_allow_html=True)
             st.markdown(
-                '<p class="module-body">Revisar convocatorias habilitadas y, en las próximas etapas, '
+                '<p class="module-body">Revisar convocatorias ficticias y '
                 'completar y enviar la información requerida para cada estudiante dentro del plazo establecido.</p>',
                 unsafe_allow_html=True,
             )
@@ -41,8 +41,8 @@ def render() -> None:
             st.markdown('<div class="module-label">02 · PERFIL INTERNO</div>', unsafe_allow_html=True)
             st.markdown('<div class="module-title">🏢 Funcionario/a IND</div>', unsafe_allow_html=True)
             st.markdown(
-                '<p class="module-body">En futuras etapas, configurar convocatorias, controlar fechas, '
-                'revisar antecedentes y generar el archivo de importación masiva compatible con SIGI.</p>',
+                '<p class="module-body">En esta versión de demostración, '
+                'revisar antecedentes de la misma sesión y generar un Excel con estructura SIGI para pruebas.</p>',
                 unsafe_allow_html=True,
             )
             st.button("Explorar perfil IND →", key="go_ind", use_container_width=True, on_click=_go, args=("ind",))
@@ -62,8 +62,8 @@ def render() -> None:
                 st.markdown(f'<div class="step-sub">{subtitle}</div>', unsafe_allow_html=True)
 
     with st.expander("Ver los datos de inscripción informados por el IND"):
-        st.write("Campos comunicados en la reunión, pendientes de verificar con la plantilla SIGI:")
+        st.write("Diez campos identificados en la plantilla entregada por el IND:")
         for name in CAMPOS_INFORMADOS_SIGI:
             st.markdown(f"- {name}")
         st.caption("El archivo final deberá respetar el orden, formato, nombres y demás reglas reales de la plantilla de SIGI.")
-    st.caption("Proyecto universitario · IND Región de Aysén · Primera versión: pantalla de inicio y navegación demostrativa.")
+    st.caption("Proyecto universitario · IND Región de Aysén · Versión 4: formulario, revisión en sesión y archivo XLSX de prueba.")
